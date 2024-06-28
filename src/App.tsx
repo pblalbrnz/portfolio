@@ -53,7 +53,7 @@ function App() {
         <header className="w-full lg:h-20 xs:h-16 flex flex-col items-center justify-end">
           <div className="w-full h-full flex justify-between items-center font-source text-neutral-800">
             <div className="w-1/3 flex justify-start">
-              <a href="http://github.com/pabloalbrnz" target="_blank">
+              <a href="http://github.com/pblalbrnz" target="_blank">
                 <PiMoonFill
                   size={24}
                   className="-rotate-90 hover:text-violet-800 ease-linear transition-colors"
@@ -160,12 +160,19 @@ function App() {
         <span className="w-full uppercase text-center font-stretch text-neutral-200 lg:text-lg xs:text-sm">
           My proojeects
         </span>
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-wrap gap-8">
           {projects.map((project) => {
             return (
               project.thumb && (
                 <div className="flex flex-col gap-2">
-                  <div className="flex gap-4 pb-2 overflow-y-scroll scroll-smooth scroll-visible">
+                  <a
+                    href={project.href || "#"}
+                    target={project.href ? "_blank" : "_parent"}
+                    className="w-fit font-mono text-neutral-200 font-semibold px-0.5 underline lg:text-lg xs:text-xs"
+                  >
+                    {project.name || "Untitled project"}
+                  </a>
+                  <div className="flex gap-2 pb-2 overflow-y-scroll scroll-smooth scroll-visible">
                     <div className="lg:min-w-48 lg:min-h-48 lg:max-w-48 lg:max-h-48 xs:min-w-28 xs:min-h-28 xs:max-w-28 xs:max-h-28 aspect-square rounded bg-neutral-200 flex flex-col overflow-hidden">
                       <img
                         src={project.thumb}
@@ -186,13 +193,6 @@ function App() {
                         );
                       })}
                   </div>
-                  <a
-                    href={project.href || "#"}
-                    target={project.href ? "_blank" : "_parent"}
-                    className="w-fit font-source text-neutral-200 font-semibold px-0.5 underline lg:text-base xs:text-xs"
-                  >
-                    {project.name || "Untitled project"}
-                  </a>
                 </div>
               )
             );

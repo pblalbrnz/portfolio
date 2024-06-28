@@ -5,7 +5,7 @@ export default {
     extend: {
       fontFamily: {
         stretch: "Stretch Pro, sans-serif",
-        source: "Source Code Pro, monospace",
+        mono: "JetBrains Mono, monospace",
       },
       screens: {
         xs: "320px",
