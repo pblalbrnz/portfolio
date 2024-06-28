@@ -1,0 +1,70 @@
+@import url("https://fonts.cdnfonts.com/css/stretch-pro");
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+body {
+  background-color: theme(colors.neutral.100);
+}
+
+.noise-dark {
+  background-image: url("assets/noise-dark.png");
+}
+
+.noise-light {
+  background-image: url("assets/noise-light.png");
+}
+
+::-moz-selection {
+  color: theme(colors.neutral.800);
+  background: theme(colors.purple.500);
+}
+
+::selection {
+  color: theme(colors.neutral.800);
+  background: theme(colors.purple.500);
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-visible::-webkit-scrollbar {
+  display: flex;
+  width: 0;
+  height: 8px;
+}
+
+.scroll-visible::-webkit-scrollbar-track {
+  background: theme(colors.neutral.700);
+  border-radius: 2px;
+  background-image: url("./assets/noise-dark.png");
+}
+
+.scroll-visible::-webkit-scrollbar-thumb {
+  background: theme(colors.purple.600);
+  border-radius: 2px;
+  background-image: url("./assets/noise-dark.png");
+}
+
+.scroll-visible::-webkit-scrollbar-thumb:hover {
+  background: theme(colors.purple.800);
+  background-image: url("./assets/noise-dark.png");
+}
