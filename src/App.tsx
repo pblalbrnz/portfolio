@@ -51,7 +51,7 @@ function App() {
         id="home"
       >
         <header className="w-full lg:h-20 xs:h-16 flex flex-col items-center justify-end">
-          <div className="w-full h-full flex justify-between items-center font-source text-neutral-800">
+          <div className="w-full h-full flex justify-between items-center font-mono text-neutral-800">
             <div className="w-1/3 flex justify-start">
               <a href="http://github.com/pblalbrnz" target="_blank">
                 <PiMoonFill
@@ -111,7 +111,7 @@ function App() {
                 <br />
                 {randomName[2]}
               </h2>
-              <span className="font-source lg:ml-1 xs:ml-0.5 xs:text-xs lg:text-base">
+              <span className="font-mono lg:ml-1 xs:ml-0.5 xs:text-xs lg:text-base">
                 Hello World!{" "}
                 <span className="lg:text-2xl xs:text-base -hue-rotate-[67.5deg] brightness-75">
                   👋
@@ -200,7 +200,7 @@ function App() {
         </div>
       </div>
       <div className="fixed -z-10 noise-dark size-full opacity-25" />
-      <span className="xs:hidden lg:flex absolute leading-4 font-source text-2xl rotate-6 opacity-10 top-[47%] left-[75%] text-center blur-[0.25px]">
+      <span className="xs:hidden lg:flex absolute leading-4 font-mono text-2xl rotate-6 opacity-10 top-[47%] left-[75%] text-center blur-[0.25px]">
         xxxxxxxxxx
         <br />
         xxxxxxxxxxxx
@@ -222,7 +222,7 @@ function App() {
         xxxxxxxxxxx
         <br />
       </span>
-      <span className="xs:hidden lg:flex absolute -z-20 leading-4 font-source text-2xl -rotate-[9deg] opacity-10 top-[16%] left-[12%] text-center blur-[0.75px]">
+      <span className="xs:hidden lg:flex absolute -z-20 leading-4 font-mono text-2xl -rotate-[9deg] opacity-10 top-[16%] left-[12%] text-center blur-[0.75px]">
         xxxxxxxxxx
         <br />
         xxxxxxxxxxxx
@@ -268,7 +268,7 @@ function App() {
           src={violetTape}
           className="absolute w-20 left-12 -top-2 -rotate-[12deg] opacity-75 contrast-150 brightness-[1.22] group-hover/polaroid:-rotate-[10deg] ease-linear transition-transform"
         />
-        <span className="absolute font-source -rotate-[8deg] text-sm left-[3.5rem] top-[9.5rem] text-neutral-400 font-semibold italic opacity-40 group-hover/polaroid:-rotate-[6deg] ease-linear transition-transform">
+        <span className="absolute font-mono -rotate-[8deg] text-sm left-[3.5rem] top-[9.5rem] text-neutral-400 font-semibold italic opacity-40 group-hover/polaroid:-rotate-[6deg] ease-linear transition-transform">
           life is good
         </span>
       </div>
