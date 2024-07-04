@@ -197,9 +197,14 @@ function App() {
                   <a
                     href={project.href || "#"}
                     target={project.href ? "_blank" : "_parent"}
-                    className="w-fit font-mono text-neutral-200 font-semibold px-0.5 underline lg:text-lg xs:text-xs"
+                    className="flex items-center gap-1.5 w-fit font-mono text-neutral-200 font-semibold px-0.5 lg:text-lg xs:text-xs"
                   >
-                    {project.name || "Untitled project"}
+                    <p className="underline">
+                      {project.name || "Untitled project"}
+                    </p>
+                    <p className="italic lg:text-xs xs:text-2xs text-neutral-400">
+                      ({project.href.replace("https://", "")})
+                    </p>
                   </a>
                   <div className="flex flex-col gap-2 overflow-x-auto rounded">
                     <div className="flex scroll-smooth gap-2 scroll-visible">
