@@ -164,7 +164,7 @@ function App() {
           {projects.map((project) => {
             return (
               project.thumb && (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 overflow-hidden">
                   <a
                     href={project.href || "#"}
                     target={project.href ? "_blank" : "_parent"}
@@ -172,26 +172,28 @@ function App() {
                   >
                     {project.name || "Untitled project"}
                   </a>
-                  <div className="flex gap-2 pb-2 overflow-y-scroll scroll-smooth scroll-visible">
-                    <div className="lg:min-w-48 lg:min-h-48 lg:max-w-48 lg:max-h-48 xs:min-w-28 xs:min-h-28 xs:max-w-28 xs:max-h-28 aspect-square rounded bg-neutral-200 flex flex-col overflow-hidden">
-                      <img
-                        src={project.thumb}
-                        alt={project.name}
-                        className="h-full object-cover"
-                      />
+                  <div className="flex flex-col gap-2 overflow-x-auto">
+                    <div className="flex scroll-smooth gap-2 scroll-visible">
+                      <div className="lg:min-w-128 lg:min-h-128 lg:max-w-128 lg:max-h-128 xs:min-w-56 xs:min-h-56 xs:max-w-56 xs:max-h-56 aspect-square rounded bg-neutral-200 flex flex-col overflow-hidden">
+                        <img
+                          src={project.thumb}
+                          alt={project.name}
+                          className="h-full object-cover"
+                        />
+                      </div>
+                      {project.imgs &&
+                        project.imgs.map((p) => {
+                          return (
+                            <div className="lg:min-w-128 lg:min-h-128 lg:max-w-128 lg:max-h-128 xs:min-w-56 xs:min-h-56 xs:max-w-56 xs:max-h-56 aspect-square rounded bg-neutral-200 flex flex-col overflow-hidden">
+                              <img
+                                src={p.img}
+                                alt=""
+                                className="h-full object-cover"
+                              />
+                            </div>
+                          );
+                        })}
                     </div>
-                    {project.imgs &&
-                      project.imgs.map((p) => {
-                        return (
-                          <div className="lg:min-w-48 lg:min-h-48 lg:max-w-48 lg:max-h-48 xs:min-w-28 xs:min-h-28 xs:max-w-28 xs:max-h-28 aspect-square rounded bg-neutral-200 flex flex-col overflow-hidden">
-                            <img
-                              src={p.img}
-                              alt=""
-                              className="h-full object-cover"
-                            />
-                          </div>
-                        );
-                      })}
                   </div>
                 </div>
               )

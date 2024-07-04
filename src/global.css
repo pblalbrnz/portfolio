@@ -46,25 +46,25 @@ body {
   display: none;
 }
 
-.scroll-visible::-webkit-scrollbar {
+*::-webkit-scrollbar {
   display: flex;
   width: 0;
   height: 8px;
 }
 
-.scroll-visible::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: theme(colors.neutral.700);
   border-radius: 2px;
   background-image: url("./assets/noise-dark.png");
 }
 
-.scroll-visible::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
   background: theme(colors.purple.600);
   border-radius: 2px;
   background-image: url("./assets/noise-dark.png");
 }
 
-.scroll-visible::-webkit-scrollbar-thumb:hover {
+*::-webkit-scrollbar-thumb:hover {
   background: theme(colors.purple.800);
   background-image: url("./assets/noise-dark.png");
 }

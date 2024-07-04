@@ -13,6 +13,24 @@ export default {
       fontSize: {
         "2xs": "0.65rem",
       },
+      minHeight: {
+        "128": "32rem"
+      },
+      minWidth: {
+        "128": "32rem"
+      },
+      maxHeight: {
+        "128": "32rem"
+      },
+      maxWidth: {
+        "128": "32rem"
+      },
+      height: {
+        "128": "32rem"
+      },
+      width: {
+        "128": "32rem"
+      },
     },
   },
   plugins: [],

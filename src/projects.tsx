@@ -14,21 +14,26 @@ export const projects = [
     imgs: [
       {
         img: magixDefaultBlue,
+        alt: "DefaultBlue",
       },
       {
         img: magixDefaultWhite,
+        alt: "DefaultWhite",
       },
       {
         img: magixAlt,
+        alt: "Alternative",
       },
       {
         img: magixPB,
+        alt: "Black&White",
       },
       {
         img: magixBP,
+        alt: "Black&WhiteAlt",
       },
     ],
-    href: "https://behance.net/pulseim",
+    href: "https://behance.net/pabloalbrnz",
   },
   {
     name: "cantodosk",
