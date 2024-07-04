@@ -1,4 +1,5 @@
 import {
+  PiArrowUpBold,
   PiAtBold,
   PiHouseFill,
   PiMoonFill,
@@ -27,6 +28,26 @@ function App() {
   ];
 
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
+
+  const [scrollTopVisible, setScrollTopVisible] = useState(false);
+
+  const toggleVisible = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 10) {
+      setScrollTopVisible(true);
+    } else if (scrolled <= 300) {
+      setScrollTopVisible(false);
+    }
+  };
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  window.addEventListener("scroll", toggleVisible);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -180,7 +201,7 @@ function App() {
                   >
                     {project.name || "Untitled project"}
                   </a>
-                  <div className="flex flex-col gap-2 overflow-x-auto">
+                  <div className="flex flex-col gap-2 overflow-x-auto rounded">
                     <div className="flex scroll-smooth gap-2 scroll-visible">
                       <div className="lg:min-w-128 lg:min-h-128 lg:max-w-128 lg:max-h-128 xs:min-w-56 xs:min-h-56 xs:max-w-56 xs:max-h-56 aspect-square rounded bg-neutral-200 flex flex-col overflow-hidden">
                         <img
@@ -286,6 +307,13 @@ function App() {
       <PiStarFourFill className="xs:hidden lg:flex absolute top-[56%] left-[62%] text-4xl rotate-[48deg] text-neutral-800 hover:-rotate-[24deg] ease-linear transition-[transform]" />
       <PiStarFourFill className="xs:hidden lg:flex absolute top-[70%] left-[14%] text-xl rotate-[8deg] text-purple-500 hover:-rotate-[90deg] ease-linear transition-[transform]" />
       <PiStarFourFill className="xs:hidden lg:flex absolute top-[16%] left-[66%] text-2xl text-purple-500 hover:animate-spin ease-linear transition-[transform]" />
+      <div
+        onClick={scrollToTop}
+        style={{ display: scrollTopVisible ? "flex" : "none" }}
+        className="fixed lg:mt-[56rem] lg:ml-[96rem] size-8 flex justify-center items-center bg-purple-500 text-neutral-200 rounded hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all cursor-pointer"
+      >
+        <PiArrowUpBold size={20} />
+      </div>
     </div>
   );
 }
