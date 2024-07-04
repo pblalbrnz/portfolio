@@ -9,6 +9,7 @@ import me from "./assets/pablo.png";
 import violetTape from "./assets/violet_tape.png";
 import subway1 from "./assets/subway1.jpg";
 import { projects } from "./projects";
+import { language } from "./text";
 import "./global.css";
 import { useEffect, useState } from "react";
 
@@ -34,6 +35,8 @@ function App() {
 
     return () => clearInterval(timer);
   });
+
+  let lang = language.english;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -64,7 +67,11 @@ function App() {
               <div className="w-1/2 flex justify-end">
                 <a href="/">
                   <li className="p-2 rounded-lg">
-                    {screenWidth <= 768 ? <PiHouseFill size={24} /> : "Home"}
+                    {screenWidth <= 768 ? (
+                      <PiHouseFill size={24} />
+                    ) : (
+                      lang!.home
+                    )}
                   </li>
                 </a>
               </div>
@@ -75,7 +82,7 @@ function App() {
                     {screenWidth <= 768 ? (
                       <PiPaintBrushBroadFill size={24} />
                     ) : (
-                      "Projects"
+                      lang!.projects
                     )}
                   </li>
                 </a>
@@ -112,20 +119,21 @@ function App() {
                 {randomName[2]}
               </h2>
               <span className="font-mono lg:ml-1 xs:ml-0.5 xs:text-xs lg:text-base">
-                Hello World!{" "}
+                {lang!.helloworld}{" "}
                 <span className="lg:text-2xl xs:text-base -hue-rotate-[67.5deg] brightness-75">
                   👋
                 </span>
-                <br />I am a{" "}
+                <br />
+                {lang?.amI}{" "}
                 <i>
-                  <b>Web, UI/UX and Graphic Designer.</b>
+                  <b>{lang!.roles}</b>
                 </i>
                 <br />
-                It will be a pleasure to be part of{" "}
+                {lang!.pleasure}{" "}
                 <b>
-                  <i>your</i>
+                  <i>{lang!.your}</i>
                 </b>{" "}
-                journey.
+                {lang!.journey}.
               </span>
               <div className="xs:pt-12 xs:-ml-[7.75rem] lg:pt-0 lg:ml-0">
                 <span className="absolute text-3xl -hue-rotate-[67.5deg] brightness-75 lg:-mt-4 lg:ml-48 xs:-mt-5 xs:ml-60 rotate-[12deg] hover:-rotate-6 ease-linear transition-all hover:drop-shadow-[0px_4px_8px_rgba(100,55,155,0.25)]">
@@ -140,7 +148,7 @@ function App() {
                     )
                   }
                 >
-                  Hire me{" "}
+                  {lang!.hireme}{" "}
                   <span className="-hue-rotate-[67.5deg] brightness-75 group-hover/hire:hue-rotate-0 group-hover/hire:brightness-100 ease-linear transition-all">
                     ✨
                   </span>
@@ -158,7 +166,7 @@ function App() {
         id="projects"
       >
         <span className="w-full uppercase text-center font-stretch text-neutral-200 lg:text-lg xs:text-sm">
-          My proojeects
+          {lang!.myprojects}
         </span>
         <div className="flex flex-wrap gap-8">
           {projects.map((project) => {
@@ -271,7 +279,7 @@ function App() {
           className="absolute w-20 left-12 -top-2 -rotate-[12deg] opacity-75 contrast-150 brightness-[1.22] group-hover/polaroid:-rotate-[10deg] ease-linear transition-transform"
         />
         <span className="absolute font-mono -rotate-[8deg] text-sm left-[3.5rem] top-[9.5rem] text-neutral-400 font-semibold italic opacity-40 group-hover/polaroid:-rotate-[6deg] ease-linear transition-transform">
-          life is good
+          {lang!.lifeisgood}
         </span>
       </div>
       <PiStarFourFill className="xs:hidden lg:flex absolute top-[24%] left-[5%] text-6xl rotate-[28deg] text-neutral-800 hover:rotate-[12deg] ease-linear transition-[transform]" />
