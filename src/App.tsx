@@ -33,7 +33,7 @@ function App() {
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 10) {
+    if (scrolled > 200) {
       setScrollTopVisible(true);
     } else if (scrolled <= 300) {
       setScrollTopVisible(false);
@@ -310,7 +310,7 @@ function App() {
       <div
         onClick={scrollToTop}
         style={{ display: scrollTopVisible ? "flex" : "none" }}
-        className="fixed lg:mt-[56rem] lg:ml-[96rem] size-8 flex justify-center items-center bg-purple-500 text-neutral-200 rounded hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all cursor-pointer"
+        className="fixed lg:mt-[56rem] lg:ml-[96rem] size-8 flex justify-center items-center bg-purple-500 text-neutral-200 rounded hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all cursor-pointer shadow-md shadow-indigo-300"
       >
         <PiArrowUpBold size={20} />
       </div>
