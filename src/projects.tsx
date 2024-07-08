@@ -38,7 +38,7 @@ export const projects = [
   {
     name: "cantodosk",
     thumb: cantodosk,
-    href: "https://instagram.com/cantodosk",
+    href: "https://behance.net/pabloalbrnz",
   },
   {
     name: "Aurora v4",
