@@ -43,6 +43,6 @@ export const projects = [
   {
     name: "Aurora v4",
     thumb: aurora,
-    href: "https://pabloalbrnz.github.io/Aurora-v4",
+    href: "https://pblalbrnz.github.io/Aurora-v4/",
   },
 ];
