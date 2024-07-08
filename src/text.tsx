@@ -11,6 +11,7 @@ export const language = {
     journey: "journey",
     myprojects: "My proojeects",
     lifeisgood: "life is good",
+    untitled: "Untitled Project",
   },
   portuguese: {
     home: "Início",
@@ -24,5 +25,6 @@ export const language = {
     journey: "jornada",
     myprojects: "Mmeuss proojeetos",
     lifeisgood: "a vida é boa",
+    untitled: "Projeto sem título",
   },
 };

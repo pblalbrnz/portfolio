@@ -197,9 +197,14 @@ function App() {
                   <a
                     href={project.href || "#"}
                     target={project.href ? "_blank" : "_parent"}
-                    className="w-fit font-mono text-neutral-200 font-semibold px-0.5 underline lg:text-lg xs:text-xs"
+                    className="w-fit font-mono text-neutral-200 font-semibold px-0.5 flex gap-1.5 items-center group/title"
                   >
-                    {project.name || "Untitled project"}
+                    <span className="underline lg:text-lg xs:text-xs group-hover/title:text-neutral-400 ease-linear transition-colors">
+                      {project.name || lang!.untitled}
+                    </span>
+                    <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
+                      ({project.href})
+                    </span>
                   </a>
                   <div className="flex flex-col gap-2 overflow-x-auto rounded">
                     <div className="flex scroll-smooth gap-2 scroll-visible">
@@ -309,10 +314,13 @@ function App() {
       <PiStarFourFill className="xs:hidden lg:flex absolute top-[16%] left-[66%] text-2xl text-purple-500 hover:animate-spin ease-linear transition-[transform]" />
       <div
         onClick={scrollToTop}
-        style={{ display: scrollTopVisible ? "flex" : "none" }}
-        className="fixed lg:mt-[56rem] lg:ml-[96rem] size-8 flex justify-center items-center bg-purple-500 text-neutral-200 rounded hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all cursor-pointer shadow-md shadow-indigo-300"
+        style={{
+          display: scrollTopVisible ? "flex" : "none",
+          opacity: scrollTopVisible ? "100%" : " 0%",
+        }}
+        className="fixed lg:mt-[40%] lg:ml-[80%] size-12 flex justify-center items-center bg-purple-500 text-neutral-200 rounded-lg hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all cursor-pointer shadow-md shadow-violet-400"
       >
-        <PiArrowUpBold size={20} />
+        <PiArrowUpBold size={28} />
       </div>
     </div>
   );
