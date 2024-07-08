@@ -203,7 +203,7 @@ function App() {
                       {project.name || lang!.untitled}
                     </span>
                     <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
-                      ({project.href})
+                      ({project.href.replace("https://", "")})
                     </span>
                   </a>
                   <div className="flex flex-col gap-2 overflow-x-auto rounded">
