@@ -1,6 +1,7 @@
 import {
   PiArrowUpBold,
   PiAtBold,
+  PiGithubLogoFill,
   PiHouseFill,
   PiMoonFill,
   PiPaintBrushBroadFill,
@@ -13,6 +14,7 @@ import { projects } from "./projects";
 import { language } from "./text";
 import "./global.css";
 import { useEffect, useState } from "react";
+import Tilt from "react-parallax-tilt";
 
 function App() {
   const [randomName, setRandomName] = useState({
@@ -76,13 +78,19 @@ function App() {
       >
         <header className="w-full lg:h-20 xs:h-16 flex flex-col items-center justify-end">
           <div className="w-full h-full flex justify-between items-center font-mono text-neutral-800">
-            <div className="w-1/3 flex justify-start">
+            <div className="w-1/3 flex gap-2 justify-start">
               <a href="http://github.com/pblalbrnz" target="_blank">
+                <PiGithubLogoFill
+                  size={24}
+                  className="hover:text-violet-800 ease-linear transition-colors"
+                />
+              </a>
+              <button>
                 <PiMoonFill
                   size={24}
                   className="-rotate-90 hover:text-violet-800 ease-linear transition-colors"
                 />
-              </a>
+              </button>
             </div>
             <ul className="flex lg:gap-8 xs:gap-4 items-center justify-center w-1/3">
               <div className="w-1/2 flex justify-end">
@@ -123,7 +131,7 @@ function App() {
         </header>
         <section className="w-full flex flex-col gap-8 justify-center lg:px-24 xs:px-0">
           <div className="flex lg:gap-4 xs:gap-2 xs:justify-center lg:justify-start">
-            <div className="rounded hover:rounded-md lg:min-w-52 lg:max-w-52 xs:min-w-28 xs:max-w-28 bg-neutral-300 border border-neutral-800 hover:border-transparent lg:h-80 xs:h-48 flex overflow-hidden group/me noise-light hover:bg-purple-500 transition-all shadow shadow-transparent hover:shadow-2xl hover:shadow-purple-400 ease-linear">
+            <Tilt className="rounded hover:rounded-md lg:min-w-52 lg:max-w-52 xs:min-w-28 xs:max-w-28 bg-neutral-300 border border-neutral-800 hover:border-transparent lg:h-80 xs:h-48 flex overflow-hidden group/me noise-light hover:bg-purple-500 transition-all shadow shadow-transparent hover:shadow-2xl hover:shadow-purple-400 ease-linear">
               <img
                 alt="Pablo photo"
                 src={me}
@@ -132,7 +140,7 @@ function App() {
               <span className="absolute lg:text-3xl xs:text-xl -hue-rotate-[67.5deg] brightness-75 lg:mt-48 lg:ml-[11.25rem] xs:mt-28 xs:ml-[5.75rem] -rotate-[128deg] hover:-rotate-[102deg] ease-linear transition-transform">
                 🤙
               </span>
-            </div>
+            </Tilt>
             <div className="flex flex-col lg:gap-8 xs:gap-4 text-neutral-800 lg:w-auto xs:w-36">
               <h2 className="font-stretch uppercase lg:text-3xl xs:text-2xs">
                 {randomName[1]}
