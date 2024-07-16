@@ -38,11 +38,11 @@ export const projects = [
   {
     name: "cantodosk",
     thumb: cantodosk,
-    href: "https://instagram.com/cantodosk",
+    href: "https://behance.net/pabloalbrnz",
   },
   {
     name: "Aurora v4",
     thumb: aurora,
-    href: "https://pabloalbrnz.github.io/Aurora-v4",
+    href: "https://pblalbrnz.github.io/Aurora-v4/",
   },
 ];
