@@ -210,9 +210,11 @@ function App() {
                     <span className="underline lg:text-lg xs:text-xs group-hover/title:text-neutral-400 ease-linear transition-colors">
                       {project.name || lang!.untitled}
                     </span>
-                    <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
-                      ({project.href.replace("https://", "")})
-                    </span>
+                    {project.href && (
+                      <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
+                        ({project.href.replace("https://", "")})
+                      </span>
+                    )}
                   </a>
                   <div className="flex flex-col gap-2 overflow-x-auto rounded">
                     <div className="flex scroll-smooth gap-2 scroll-visible">
