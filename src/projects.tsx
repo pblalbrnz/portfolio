@@ -20,6 +20,7 @@ import neekoIconBP from "./assets/neekostyle/IconBP.png";
 
 export const projects = [
   {
+    id: "magixkids",
     name: "Magix Kids Redesign",
     thumb: magixDefaultRed,
     imgs: [
@@ -47,16 +48,19 @@ export const projects = [
     href: "https://behance.net/pabloalbrnz",
   },
   {
+    id: "cantodosk",
     name: "cantodosk",
     thumb: cantodosk,
     href: "https://behance.net/pabloalbrnz",
   },
   {
+    id: "aurorav4",
     name: "Aurora v4",
     thumb: aurora,
     href: "https://pblalbrnz.github.io/Aurora-v4/",
   },
   {
+    id: "neekostyle",
     name: "Neeko Style",
     thumb: neekoDefault,
     imgs: [
