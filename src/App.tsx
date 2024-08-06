@@ -1,8 +1,8 @@
 import {
   PiArrowUpBold,
   PiAtBold,
+  PiGithubLogoFill,
   PiHouseFill,
-  PiMoonFill,
   PiPaintBrushBroadFill,
   PiStarFourFill,
 } from "react-icons/pi";
@@ -13,6 +13,7 @@ import { projects } from "./projects";
 import { language } from "./text";
 import "./global.css";
 import { useEffect, useState } from "react";
+import Tilt from "react-parallax-tilt";
 
 function App() {
   const [randomName, setRandomName] = useState({
@@ -76,20 +77,27 @@ function App() {
       >
         <header className="w-full lg:h-20 xs:h-16 flex flex-col items-center justify-end">
           <div className="w-full h-full flex justify-between items-center font-mono text-neutral-800">
-            <div className="w-1/3 flex justify-start">
-              <a href="http://github.com/pblalbrnz" target="_blank">
-                <PiMoonFill
+            <div className="w-1/3 flex gap-2 justify-start">
+              <a
+                href="http://github.com/pblalbrnz"
+                target="_blank"
+                className="p-2 hover:bg-neutral-200 rounded-md noise-light group/headerbtn hover:text-violet-800 ease-linear transition-colors"
+              >
+                <PiGithubLogoFill
                   size={24}
-                  className="-rotate-90 hover:text-violet-800 ease-linear transition-colors"
+                  className="group-hover/headerbtn:scale-125 group-hover/headerbtn:-rotate-12 transition-transform ease-in-out"
                 />
               </a>
             </div>
             <ul className="flex lg:gap-8 xs:gap-4 items-center justify-center w-1/3">
               <div className="w-1/2 flex justify-end">
                 <a href="/">
-                  <li className="p-2 rounded-lg">
+                  <li className="p-2 rounded-lg group/headerbtn">
                     {screenWidth <= 768 ? (
-                      <PiHouseFill size={24} />
+                      <PiHouseFill
+                        size={24}
+                        className="group-hover/headerbtn:scale-125"
+                      />
                     ) : (
                       lang!.home
                     )}
@@ -99,9 +107,12 @@ function App() {
               <li className="font-bold">×</li>
               <div className="w-1/2 flex justify-start">
                 <a href="#projects">
-                  <li className="p-2 rounded-lg">
+                  <li className="p-2 rounded-lg group/headerbtn">
                     {screenWidth <= 768 ? (
-                      <PiPaintBrushBroadFill size={24} />
+                      <PiPaintBrushBroadFill
+                        size={24}
+                        className="group-hover/headerbtn:scale-125"
+                      />
                     ) : (
                       lang!.projects
                     )}
@@ -111,11 +122,14 @@ function App() {
             </ul>
             <div className="w-1/3 flex justify-end">
               <a
-                href="https://instagram.com/pabloalbrnz"
+                href="http://instagram.com/pabloalbrnz"
                 target="_blank"
-                className="text-xs opacity-50"
+                className="p-2 hover:bg-neutral-200 rounded-md noise-light group/headerbtn hover:text-violet-800 ease-linear transition-colors"
               >
-                {screenWidth <= 768 ? <PiAtBold size={16} /> : "@pabloalbrnz"}
+                <PiAtBold
+                  size={24}
+                  className="-rotate-[24deg] group-hover/headerbtn:scale-125 group-hover/headerbtn:rotate-12 transition-transform ease-in-out"
+                />
               </a>
             </div>
           </div>
@@ -123,25 +137,27 @@ function App() {
         </header>
         <section className="w-full flex flex-col gap-8 justify-center lg:px-24 xs:px-0">
           <div className="flex lg:gap-4 xs:gap-2 xs:justify-center lg:justify-start">
-            <div className="rounded hover:rounded-md lg:min-w-52 lg:max-w-52 xs:min-w-28 xs:max-w-28 bg-neutral-300 border border-neutral-800 hover:border-transparent lg:h-80 xs:h-48 flex overflow-hidden group/me noise-light hover:bg-purple-500 transition-all shadow shadow-transparent hover:shadow-2xl hover:shadow-purple-400 ease-linear">
+            <Tilt className="rounded hover:rounded-md lg:min-w-52 lg:max-w-52 xs:min-w-28 xs:max-w-28 bg-neutral-300 border border-neutral-800 hover:border-purple-600 lg:h-80 xs:h-48 flex overflow-hidden group/me noise-light hover:bg-purple-500 transition-all shadow shadow-transparent hover:shadow-2xl hover:shadow-purple-400 ease-linear">
               <img
                 alt="Pablo photo"
                 src={me}
                 className="lg:h-72 xs:h-40 self-end grayscale group-hover/me:grayscale-0 ease-linear drop-shadow-[0_0_12px_rgba(20,15,25,0.1)] group-hover/me:drop-shadow-[0_0_12px_rgba(200,155,255)] transition-all group-hover/me:rotate-[2deg] group-hover/me:scale-110"
               />
-              <span className="absolute lg:text-3xl xs:text-xl -hue-rotate-[67.5deg] brightness-75 lg:mt-48 lg:ml-[11.25rem] xs:mt-28 xs:ml-[5.75rem] -rotate-[128deg] hover:-rotate-[102deg] ease-linear transition-transform">
-                🤙
-              </span>
-            </div>
+            </Tilt>
+            <span className="absolute lg:text-3xl xs:text-xl -hue-rotate-[67.5deg] brightness-75 lg:mt-48 lg:ml-[11.25rem] xs:mt-28 xs:ml-[5.75rem] -rotate-[128deg] hover:-rotate-[102deg] ease-linear transition-transform">
+              🤙
+            </span>
             <div className="flex flex-col lg:gap-8 xs:gap-4 text-neutral-800 lg:w-auto xs:w-36">
               <h2 className="font-stretch uppercase lg:text-3xl xs:text-2xs">
                 {randomName[1]}
                 <br />
                 {randomName[2]}
               </h2>
-              <span className="font-mono lg:ml-1 xs:ml-0.5 xs:text-xs lg:text-base">
-                {lang!.helloworld}{" "}
-                <span className="lg:text-2xl xs:text-base -hue-rotate-[67.5deg] brightness-75">
+              <div className="font-mono lg:ml-1 xs:ml-0.5 xs:text-xs lg:text-base">
+                <span className="underline underline-offset-4 p-1 bg-purple-500 rounded text-neutral-200 -ml-0.5 text-lg">
+                  {lang!.helloworld}
+                </span>
+                <span className="lg:text-2xl xs:text-base -hue-rotate-[67.5deg] brightness-75 animate-spin ease-linear transition-transform">
                   👋
                 </span>
                 <br />
@@ -155,13 +171,13 @@ function App() {
                   <i>{lang!.your}</i>
                 </b>{" "}
                 {lang!.journey}.
-              </span>
+              </div>
               <div className="xs:pt-12 xs:-ml-[7.75rem] lg:pt-0 lg:ml-0">
                 <span className="absolute text-3xl -hue-rotate-[67.5deg] brightness-75 lg:-mt-4 lg:ml-48 xs:-mt-5 xs:ml-60 rotate-[12deg] hover:-rotate-6 ease-linear transition-all hover:drop-shadow-[0px_4px_8px_rgba(100,55,155,0.25)]">
                   ✌️
                 </span>
                 <button
-                  className="lg:text-base xs:text-sm flex gap-4 lg:w-fit xs:w-full font-stretch uppercase py-2 lg:pl-8 lg:pr-12 xs:justify-center ml-1 bg-neutral-300 rounded hover:rounded-md border border-neutral-800 hover:border-transparent hover:bg-purple-500 noise-light hover:text-neutral-200 ease-linear transition-all shadow shadow-transparent hover:shadow-xl hover:shadow-purple-300 group/hire"
+                  className="lg:text-base xs:text-sm flex gap-4 lg:w-fit xs:w-full font-stretch uppercase py-2 lg:pl-8 lg:pr-12 xs:justify-center ml-1 bg-neutral-300 rounded hover:rounded-md border border-neutral-800 hover:border-transparent hover:bg-purple-500 noise-light hover:text-neutral-200 ease-in-out duration-500 transition-all shadow shadow-transparent hover:shadow-xl hover:shadow-purple-300 group/hire"
                   onClick={() =>
                     window.open(
                       "mailto:pabloalbernazrincon@gmail.com",
@@ -170,7 +186,7 @@ function App() {
                   }
                 >
                   {lang!.hireme}{" "}
-                  <span className="-hue-rotate-[67.5deg] brightness-75 group-hover/hire:hue-rotate-0 group-hover/hire:brightness-100 ease-linear transition-all">
+                  <span className="-hue-rotate-[67.5deg] brightness-75 group-hover/hire:hue-rotate-90 group-hover/hire:brightness-100 ease-linear transition-all">
                     ✨
                   </span>
                 </button>
@@ -202,9 +218,11 @@ function App() {
                     <span className="underline lg:text-lg xs:text-xs group-hover/title:text-neutral-400 ease-linear transition-colors">
                       {project.name || lang!.untitled}
                     </span>
-                    <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
-                      ({project.href.replace("https://", "")})
-                    </span>
+                    {project.href && (
+                      <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
+                        ({project.href.replace("https://", "")})
+                      </span>
+                    )}
                   </a>
                   <div className="flex flex-col gap-2 overflow-x-auto rounded">
                     <div className="flex scroll-smooth gap-2 scroll-visible">
@@ -308,17 +326,17 @@ function App() {
           {lang!.lifeisgood}
         </span>
       </div>
-      <PiStarFourFill className="xs:hidden lg:flex absolute top-[24%] left-[5%] text-6xl rotate-[28deg] text-neutral-800 hover:rotate-[12deg] ease-linear transition-[transform]" />
-      <PiStarFourFill className="xs:hidden lg:flex absolute top-[56%] left-[62%] text-4xl rotate-[48deg] text-neutral-800 hover:-rotate-[24deg] ease-linear transition-[transform]" />
-      <PiStarFourFill className="xs:hidden lg:flex absolute top-[70%] left-[14%] text-xl rotate-[8deg] text-purple-500 hover:-rotate-[90deg] ease-linear transition-[transform]" />
-      <PiStarFourFill className="xs:hidden lg:flex absolute top-[16%] left-[66%] text-2xl text-purple-500 hover:animate-spin ease-linear transition-[transform]" />
+      <PiStarFourFill className="xs:hidden lg:flex absolute top-[24%] left-[5%] text-6xl rotate-[28deg] text-neutral-800 hover:rotate-[12deg] ease-linear transition-transform" />
+      <PiStarFourFill className="xs:hidden lg:flex absolute top-[56%] left-[62%] text-4xl rotate-[48deg] text-neutral-800 hover:-rotate-[24deg] ease-linear transition-transform" />
+      <PiStarFourFill className="xs:hidden lg:flex absolute top-[70%] left-[14%] text-xl rotate-[8deg] text-purple-500 hover:-rotate-[90deg] ease-linear transition-transform" />
+      <PiStarFourFill className="xs:hidden lg:flex absolute top-[16%] left-[66%] text-2xl text-purple-500 hover:animate-spin ease-linear transition-transform" />
       <div
-        onClick={scrollToTop}
+        onClick={scrollTopVisible ? scrollToTop : () => {}}
         style={{
-          display: scrollTopVisible ? "flex" : "none",
+          cursor: scrollTopVisible ? "pointer" : "default",
           opacity: scrollTopVisible ? "100%" : " 0%",
         }}
-        className="fixed lg:mt-[40%] lg:ml-[80%] size-12 flex justify-center items-center bg-purple-500 text-neutral-200 rounded-lg hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all cursor-pointer shadow-md shadow-violet-400"
+        className="fixed lg:mt-[40%] lg:ml-[80%] size-12 flex justify-center items-center bg-purple-500 text-neutral-200 rounded-lg hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all duration-700 cursor-pointer shadow-md shadow-violet-400"
       >
         <PiArrowUpBold size={28} />
       </div>
