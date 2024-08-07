@@ -1,6 +1,7 @@
 import {
   PiArrowUpBold,
   PiAtBold,
+  PiCaretDownBold,
   PiGithubLogoFill,
   PiHouseFill,
   PiLink,
@@ -14,13 +15,17 @@ import subway1 from "./assets/subway1.jpg";
 import { projects } from "./projects";
 import { language } from "./text";
 import "./global.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
 
 function App() {
   const [randomName, setRandomName] = useState({
     1: "Ppabbloo",
     2: "Albbernnaaz",
+  });
+  const [randomProjectName, setRandomProjectName] = useState({
+    1: "Meuuss",
+    2: "Pprojeetoss",
   });
   const name = [
     { 1: "Ppabbloo", 2: "Albbernnaaz" },
@@ -31,6 +36,8 @@ function App() {
   ];
 
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [contentWidth, setContentWidth] = useState<number>(0);
 
   const [scrollTopVisible, setScrollTopVisible] = useState(false);
 
@@ -55,6 +62,9 @@ function App() {
   useEffect(() => {
     const timer = setInterval(() => {
       setScreenWidth(window.screen.width);
+      if (contentRef.current) {
+        setContentWidth(contentRef.current.offsetWidth);
+      }
     }, 100);
 
     return () => clearInterval(timer);
@@ -64,16 +74,29 @@ function App() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const random = Math.floor(Math.random() * name.length);
-      setRandomName(name[random]);
+      const randomName = Math.floor(Math.random() * name.length);
+      const randomProjectName = Math.floor(
+        Math.random() * lang.myprojects.length
+      );
+      setRandomName(name[randomName]);
+      setRandomProjectName(lang.myprojects[randomProjectName]);
     }, 5000);
 
     return () => clearInterval(timer);
   }, [name]);
 
+  function bounceArrows() {
+    const arrows = Array.from(
+      { length: Math.floor(contentWidth / 20) },
+      (_, index) => <PiCaretDownBold key={index} />
+    );
+    return <div className="animate-bounce flex gap-1">{arrows}</div>;
+  }
+
   return (
     <div className="w-full flex flex-col items-center scroll-smooth">
       <div
+        ref={contentRef}
         className="lg:h-screen xs:h-fit lg:w-4/5 xs:w-10/12 flex flex-col lg:justify-between lg:gap-24 xs:gap-4"
         id="home"
       >
@@ -137,7 +160,7 @@ function App() {
           </div>
           <div className="w-full bg-neutral-800 h-px" />
         </header>
-        <section className="w-full flex flex-col gap-8 justify-center lg:px-24 xs:px-0">
+        <section className="w-full flex flex-col gap-8 justify-center lg:px-24 xs:px-0 xs:pt-2">
           <div className="flex lg:gap-4 xs:gap-2 xs:justify-center lg:justify-start">
             <Tilt className="rounded hover:rounded-md lg:min-w-52 lg:max-w-52 xs:min-w-28 xs:max-w-28 bg-neutral-300 border border-neutral-800 hover:border-purple-600 lg:h-80 xs:h-48 flex overflow-hidden group/me noise-light hover:bg-purple-500 transition-all shadow shadow-transparent hover:shadow-2xl hover:shadow-purple-400 ease-linear">
               <img
@@ -196,16 +219,16 @@ function App() {
             </div>
           </div>
         </section>
-        <footer className="w-full lg:h-20 xs:h-16 flex flex-col items-center justify-start">
-          <div className="w-full bg-neutral-800 h-px" />
-        </footer>
+        <div className="w-full lg:h-20 xs:h-16 flex flex-wrap items-center justify-center lg:pb-20 gap-4">
+          {bounceArrows()}
+        </div>
       </div>
       <div
         className="lg:min-h-screen xs:h-fit w-full bg-neutral-800 noise-dark px-24 py-12 flex flex-col gap-12"
         id="projects"
       >
         <span className="w-full uppercase text-center font-stretch text-neutral-200 lg:text-lg xs:text-sm">
-          {lang!.myprojects}
+          {randomProjectName[1]} {randomProjectName[2]}
         </span>
         <div className="flex flex-wrap gap-8 justify-between">
           {projects.map((project) => {
