@@ -189,24 +189,27 @@ function App() {
                 <br />
                 {randomName[2]}
               </h2>
-              <div className="font-mono lg:ml-1 xs:ml-0.5 xs:text-xs lg:text-base">
-                <span className="underline underline-offset-4 p-1 bg-purple-500 rounded text-neutral-200 -ml-0.5 lg:text-lg xs:text-sm">
-                  {lang!.helloworld}
-                </span>
-                <span className="lg:text-2xl xs:text-base -hue-rotate-[67.5deg] brightness-75">
-                  {" 👋"}
-                </span>
-                <br />
-                {lang?.amI}{" "}
-                <i>
-                  <b>{lang!.roles}</b>
-                </i>
-                <br />
-                {lang!.pleasure}{" "}
-                <b>
-                  <i>{lang!.your}</i>
-                </b>{" "}
-                {lang!.journey}.
+              <div className="font-mono lg:ml-1 xs:ml-0.5 xs:text-xs lg:text-base flex flex-col gap-2">
+                <div className="flex gap-1">
+                  <span className="underline text-nowrap underline-offset-4 p-1 bg-purple-500 rounded text-neutral-200 lg:text-lg xs:text-sm">
+                    {lang!.helloworld}
+                  </span>
+                  <span className="lg:text-2xl xs:text-base -hue-rotate-[67.5deg] brightness-75">
+                    👋
+                  </span>
+                </div>
+                <div>
+                  {lang?.amI}{" "}
+                  <i>
+                    <b>{lang!.roles}</b>
+                  </i>
+                  <br />
+                  {lang!.pleasure}{" "}
+                  <b>
+                    <i>{lang!.your}</i>
+                  </b>{" "}
+                  {lang!.journey}.
+                </div>
               </div>
               <div className="xs:pt-12 xs:-ml-[7.75rem] lg:pt-0 lg:ml-0">
                 <span className="absolute text-3xl -hue-rotate-[67.5deg] brightness-75 lg:-mt-6 lg:ml-48 xs:-mt-5 xs:ml-60 rotate-[12deg] hover:-rotate-6 ease-linear transition-all hover:drop-shadow-[0px_4px_8px_rgba(100,55,155,0.25)]">
