@@ -25,10 +25,12 @@ body {
 
 .noise-dark {
   background-image: url("assets/noise-dark.png");
+  background-clip: border-box;
 }
 
 .noise-light {
   background-image: url("assets/noise-light.png");
+  background-clip: border-box;
 }
 
 ::-moz-selection {

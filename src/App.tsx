@@ -105,7 +105,7 @@ function App() {
   }
 
   return (
-    <div className="w-full flex flex-col items-center scroll-smooth">
+    <div className="w-screen flex flex-col items-center scroll-smooth overflow-hidden">
       <div
         ref={contentRef}
         className="lg:h-screen xs:h-fit lg:w-4/5 xs:w-10/12 flex flex-col lg:justify-between lg:gap-24 xs:gap-4"
@@ -391,7 +391,7 @@ function App() {
           cursor: scrollTopVisible ? "pointer" : "default",
           opacity: scrollTopVisible ? "100%" : " 0%",
         }}
-        className="fixed lg:mt-[40%] lg:ml-[80%] xs:mt-[120%] xs:ml-[70%] size-12 flex justify-center items-center bg-purple-500 text-neutral-200 rounded-lg hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all duration-700 cursor-pointer shadow-md shadow-violet-400"
+        className="fixed lg:mt-[40%] lg:ml-[80%] xs:mt-[160%] xs:ml-[70%] size-12 flex justify-center items-center bg-purple-500 text-neutral-200 rounded-lg hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all duration-700 cursor-pointer shadow-md shadow-violet-400"
       >
         <PiArrowUpBold size={28} />
       </div>
