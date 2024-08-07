@@ -6,6 +6,7 @@ import {
   PiHouseFill,
   PiLink,
   PiPaintBrushBroadFill,
+  PiQuestionBold,
   PiStarFill,
   PiStarFourFill,
 } from "react-icons/pi";
@@ -17,6 +18,8 @@ import { language } from "./text";
 import "./global.css";
 import { useEffect, useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
+import { twMerge } from "tailwind-merge";
+import { Tooltip } from "./Tooltip";
 
 function App() {
   const [randomName, setRandomName] = useState({
@@ -41,8 +44,8 @@ function App() {
 
   const [scrollTopVisible, setScrollTopVisible] = useState(false);
 
+  const scrolled = document.documentElement.scrollTop;
   const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
     if (scrolled > 200) {
       setScrollTopVisible(true);
     } else if (scrolled <= 300) {
@@ -88,7 +91,15 @@ function App() {
   function bounceArrows() {
     const arrows = Array.from(
       { length: Math.floor(contentWidth / 20) },
-      (_, index) => <PiCaretDownBold key={index} />
+      (_, index) => (
+        <PiCaretDownBold
+          key={index}
+          className={twMerge(
+            "transition-transform ease-linear",
+            scrolled > 200 ? "rotate-180" : "rotate-0"
+          )}
+        />
+      )
     );
     return <div className="animate-bounce flex gap-1">{arrows}</div>;
   }
@@ -183,7 +194,7 @@ function App() {
                   {lang!.helloworld}
                 </span>
                 <span className="lg:text-2xl xs:text-base -hue-rotate-[67.5deg] brightness-75">
-                  👋
+                  {" 👋"}
                 </span>
                 <br />
                 {lang?.amI}{" "}
@@ -228,53 +239,68 @@ function App() {
         id="projects"
       >
         <span className="w-full uppercase text-center font-stretch text-neutral-200 lg:text-lg xs:text-sm">
-          {randomProjectName[1]} {randomProjectName[2]}
+          {randomProjectName[1]}
+          {screenWidth < 672 ? <br /> : " "}
+          {randomProjectName[2]}
         </span>
-        <div className="flex flex-wrap gap-8 justify-between">
+        <div className="flex flex-wrap justify-start gap-8 lg:mx-12 w-fit">
           {projects.map((project) => {
             return (
-              project.thumb && (
-                <div className="flex flex-col gap-2">
-                  <a
-                    href={project.href || "#projects"}
-                    target={project.href ? "_blank" : "_parent"}
-                    className="w-full font-mono text-neutral-200 font-semibold px-0.5 flex gap-1.5 items-center justify-between group/title"
-                  >
-                    <span className="underline lg:text-lg xs:text-xs group-hover/title:text-neutral-400 ease-linear transition-colors">
-                      {project.name || lang!.untitled}
-                    </span>
-                    {project.href && (
-                      <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
-                        {screenWidth <= 768 ? (
-                          <div className="flex items-center">
+              <div className={twMerge("flex flex-col gap-2 w-56")}>
+                <a
+                  href={project.href || "#projects"}
+                  target={project.href ? "_blank" : "_parent"}
+                  className="w-full font-mono text-neutral-200 font-semibold px-0.5 flex gap-1.5 items-center justify-between group/title"
+                >
+                  <span className="underline lg:text-lg xs:text-xs group-hover/title:text-neutral-400 ease-linear transition-colors">
+                    {project.name || lang!.untitled}
+                  </span>
+                  {project.href && (
+                    <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
+                      {screenWidth <= 1366 ? (
+                        <div className="flex items-center">
+                          <Tooltip
+                            direction="up"
+                            text={project.href.replace("https://", "")}
+                            link
+                          >
                             (<PiLink />)
-                          </div>
-                        ) : (
-                          <div className="flex items-center gap-2">
-                            ({project.href.replace("https://", "")})
-                            <PiLink />
-                          </div>
-                        )}
-                      </span>
-                    )}
-                  </a>
-                  <a href="#projects">
-                    <Tilt
-                      tiltMaxAngleX={2}
-                      tiltMaxAngleY={4}
-                      className="flex flex-col gap-2 rounded"
+                          </Tooltip>
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          ({project.href.replace("https://", "")})
+                          <PiLink />
+                        </div>
+                      )}
+                    </span>
+                  )}
+                </a>
+                <a href="#projects">
+                  <Tilt
+                    tiltMaxAngleX={2}
+                    tiltMaxAngleY={4}
+                    className="flex flex-col gap-2 rounded h-56 aspect-square"
+                  >
+                    <div
+                      className={twMerge(
+                        "h-56 aspect-square rounded bg-transparent overflow-hidden flex items-center justify-center",
+                        !project.thumb && "border-8"
+                      )}
                     >
-                      <div className="lg:min-w-128 lg:min-h-128 lg:max-w-128 lg:max-h-128 xs:min-w-56 xs:min-h-56 xs:max-w-56 xs:max-h-56 aspect-square rounded bg-neutral-200 overflow-hidden">
+                      {project.thumb ? (
                         <img
                           src={project.thumb}
                           alt={project.name}
                           className="h-full object-cover"
                         />
-                      </div>
-                    </Tilt>
-                  </a>
-                </div>
-              )
+                      ) : (
+                        <PiQuestionBold className="size-1/2 text-neutral-100" />
+                      )}
+                    </div>
+                  </Tilt>
+                </a>
+              </div>
             );
           })}
         </div>
@@ -362,7 +388,7 @@ function App() {
           cursor: scrollTopVisible ? "pointer" : "default",
           opacity: scrollTopVisible ? "100%" : " 0%",
         }}
-        className="fixed lg:mt-[40%] lg:ml-[80%] size-12 flex justify-center items-center bg-purple-500 text-neutral-200 rounded-lg hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all duration-700 cursor-pointer shadow-md shadow-violet-400"
+        className="fixed lg:mt-[40%] lg:ml-[80%] xs:mt-[120%] xs:ml-[70%] size-12 flex justify-center items-center bg-purple-500 text-neutral-200 rounded-lg hover:bg-purple-500 hover:text-neutral-400 ease-linear transition-all duration-700 cursor-pointer shadow-md shadow-violet-400"
       >
         <PiArrowUpBold size={28} />
       </div>
