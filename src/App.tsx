@@ -3,8 +3,8 @@ import {
   PiAtBold,
   PiCaretDownBold,
   PiGithubLogoFill,
-  PiHouseFill,
   PiLink,
+  PiMoonFill,
   PiPaintBrushBroadFill,
   PiQuestionBold,
   PiStarFill,
@@ -73,7 +73,7 @@ function App() {
     return () => clearInterval(timer);
   });
 
-  let lang = language.portuguese;
+  let lang = language.english;
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -115,7 +115,7 @@ function App() {
           <div className="w-full h-full flex justify-between items-center font-mono text-neutral-800">
             <div className="w-1/3 flex gap-2 justify-start">
               <a
-                href="http://github.com/pblalbrnz"
+                href="https://github.com/pblalbrnz"
                 target="_blank"
                 className="p-2 hover:bg-neutral-200 rounded-md noise-light group/headerbtn hover:text-violet-800 ease-linear transition-colors"
               >
@@ -127,23 +127,21 @@ function App() {
             </div>
             <ul className="flex lg:gap-8 xs:gap-4 items-center justify-center w-1/3">
               <div className="w-1/2 flex justify-end">
-                <a href="/">
-                  <li className="p-2 rounded-lg group/headerbtn">
-                    {screenWidth <= 768 ? (
-                      <PiHouseFill
-                        size={24}
-                        className="group-hover/headerbtn:scale-125"
-                      />
-                    ) : (
-                      lang!.home
-                    )}
-                  </li>
-                </a>
+                <li className="p-2 hover:bg-neutral-200 rounded-md noise-light group/headerbtn hover:text-violet-800 ease-linear transition-colors">
+                  {screenWidth <= 768 ? (
+                    <PiMoonFill
+                      size={24}
+                      className="group-hover/headerbtn:scale-125"
+                    />
+                  ) : (
+                    "Pablo"
+                  )}
+                </li>
               </div>
               <li className="font-bold">×</li>
               <div className="w-1/2 flex justify-start">
                 <a href="#projects">
-                  <li className="p-2 rounded-lg group/headerbtn">
+                  <li className="p-2 hover:bg-neutral-200 rounded-md noise-light group/headerbtn hover:text-violet-800 ease-linear transition-colors">
                     {screenWidth <= 768 ? (
                       <PiPaintBrushBroadFill
                         size={24}
@@ -158,7 +156,7 @@ function App() {
             </ul>
             <div className="w-1/3 flex justify-end">
               <a
-                href="http://instagram.com/pabloalbrnz"
+                href="https://instagram.com/pabloalbrnz"
                 target="_blank"
                 className="p-2 hover:bg-neutral-200 rounded-md noise-light group/headerbtn hover:text-violet-800 ease-linear transition-colors"
               >

@@ -18,6 +18,7 @@ import neekoIconYellow from "./assets/neekostyle/IconYellow.png";
 import neekoIconPB from "./assets/neekostyle/IconPB.png";
 import neekoIconBP from "./assets/neekostyle/IconBP.png";
 import aboutasmileIcon from "./assets/aboutasmile/IconAboutaSmile.jpg";
+import pokedexIcon from "./assets/pokedex/pokedexIcon.png";
 
 export const projects = [
   {
@@ -80,6 +81,7 @@ export const projects = [
   {
     id: "pokedex",
     name: "Pokedex",
+    thumb: pokedexIcon,
     href: "https://pblalbrnz.github.io/pokedex",
   },
   {
