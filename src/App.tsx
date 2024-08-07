@@ -238,7 +238,7 @@ function App() {
         </div>
       </div>
       <div
-        className="lg:min-h-screen xs:h-fit w-full bg-neutral-800 noise-dark px-24 py-12 flex flex-col gap-12"
+        className="lg:min-h-screen xs:h-fit w-full bg-neutral-800 noise-dark lg:px-24 xs:px-12 py-12 flex flex-col gap-12"
         id="projects"
       >
         <span className="w-full uppercase text-center font-stretch text-neutral-200 lg:text-lg xs:text-sm">
@@ -246,7 +246,7 @@ function App() {
           {screenWidth < 672 ? <br /> : " "}
           {randomProjectName[2]}
         </span>
-        <div className="flex flex-wrap justify-start gap-8 lg:mx-12 w-fit">
+        <div className="flex flex-wrap justify-center gap-8 lg:mx-12 w-fit">
           {projects.map((project) => {
             return (
               <div className={twMerge("flex flex-col gap-2 w-56")}>
