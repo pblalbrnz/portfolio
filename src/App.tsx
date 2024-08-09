@@ -9,12 +9,12 @@ import {
   PiQuestionBold,
   PiStarFill,
   PiStarFourFill,
+  PiCircleFill,
 } from "react-icons/pi";
 import me from "./assets/pablo.png";
 import violetTape from "./assets/violet_tape.png";
 import subway1 from "./assets/subway1.jpg";
 import { projects } from "./projects";
-import { language } from "./text";
 import "./global.css";
 import { useEffect, useRef, useState } from "react";
 import Tilt from "react-parallax-tilt";
@@ -37,12 +37,50 @@ function App() {
     { 1: "Pablloo", 2: "Allberrnazz" },
     { 1: "Pablo", 2: "Albernaz" },
   ];
+  const myProjects = [
+    { 1: "Meeuss", 2: "Projeetoss" },
+    { 1: "Meuus", 2: "Prrojjettos" },
+    { 1: "MMeus", 2: "Proojeetos" },
+    { 1: "Meeuss", 2: "Pprojjettos" },
+    { 1: "Meus", 2: "Projetos" },
+  ];
 
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
   const contentRef = useRef<HTMLDivElement>(null);
   const [contentWidth, setContentWidth] = useState<number>(0);
 
   const [scrollTopVisible, setScrollTopVisible] = useState(false);
+
+  const popupRef = useRef<HTMLDivElement | null>(null);
+  const [popupWidth, setPopupWidth] = useState<number>(0);
+  const [popupVisible, setPopupVisible] = useState({
+    isVisible: false,
+    index: "",
+  });
+
+  const handleClickOutsidePopup = (event: MouseEvent) => {
+    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      setPopupVisible({
+        isVisible: false,
+        index: "",
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (popupVisible.isVisible) {
+      document.body.style.overflow = "hidden";
+      document.addEventListener("mousedown", handleClickOutsidePopup);
+    } else {
+      document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutsidePopup);
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutsidePopup);
+    };
+  }, [popupVisible.isVisible]);
 
   const scrolled = document.documentElement.scrollTop;
   const toggleVisible = () => {
@@ -68,21 +106,18 @@ function App() {
       if (contentRef.current) {
         setContentWidth(contentRef.current.offsetWidth);
       }
+      popupRef.current && setPopupWidth(popupRef.current.offsetWidth);
     }, 100);
 
     return () => clearInterval(timer);
   });
 
-  let lang = language.english;
-
   useEffect(() => {
     const timer = setInterval(() => {
       const randomName = Math.floor(Math.random() * name.length);
-      const randomProjectName = Math.floor(
-        Math.random() * lang.myprojects.length
-      );
+      const randomProjectName = Math.floor(Math.random() * myProjects.length);
       setRandomName(name[randomName]);
-      setRandomProjectName(lang.myprojects[randomProjectName]);
+      setRandomProjectName(myProjects[randomProjectName]);
     }, 5000);
 
     return () => clearInterval(timer);
@@ -148,7 +183,7 @@ function App() {
                         className="group-hover/headerbtn:scale-125"
                       />
                     ) : (
-                      lang!.projects
+                      "Projetos"
                     )}
                   </li>
                 </a>
@@ -190,23 +225,23 @@ function App() {
               <div className="font-mono lg:ml-1 xs:ml-0.5 xs:text-xs lg:text-base flex flex-col gap-2">
                 <div className="flex gap-1">
                   <span className="underline text-nowrap underline-offset-4 p-1 bg-purple-500 rounded text-neutral-200 lg:text-lg xs:text-sm">
-                    {lang!.helloworld}
+                    Olá mundo!
                   </span>
                   <span className="lg:text-2xl xs:text-base -hue-rotate-[67.5deg] brightness-75">
                     👋
                   </span>
                 </div>
                 <div>
-                  {lang?.amI}{" "}
+                  {"Sou "}
                   <i>
-                    <b>{lang!.roles}</b>
+                    <b>Designer Gráfico, Web e UI/UX.</b>
                   </i>
                   <br />
-                  {lang!.pleasure}{" "}
+                  Será um prazer fazer parte da{" "}
                   <b>
-                    <i>{lang!.your}</i>
+                    <i>sua</i>
                   </b>{" "}
-                  {lang!.journey}.
+                  jornada.
                 </div>
               </div>
               <div className="xs:pt-12 xs:-ml-[7.75rem] lg:pt-0 lg:ml-0">
@@ -222,7 +257,7 @@ function App() {
                     )
                   }
                 >
-                  {lang!.hireme}{" "}
+                  Contrate-me
                   <span className="-hue-rotate-[67.5deg] brightness-75 group-hover/hire:hue-rotate-90 group-hover/hire:brightness-100 ease-linear transition-all">
                     ✨
                   </span>
@@ -236,7 +271,7 @@ function App() {
         </div>
       </div>
       <div
-        className="lg:min-h-screen xs:h-fit w-full bg-neutral-800 noise-dark lg:px-24 xs:px-12 py-12 flex flex-col gap-12"
+        className="lg:min-h-screen xs:h-fit w-full bg-neutral-800 noise-dark lg:px-24 xs:px-12 py-4 flex flex-col gap-12"
         id="projects"
       >
         <span className="w-full uppercase text-center font-stretch text-neutral-200 lg:text-lg xs:text-sm">
@@ -246,15 +281,38 @@ function App() {
         </span>
         <div className="flex flex-wrap justify-center gap-8 lg:mx-12 w-fit">
           {projects.map((project) => {
+            let accent;
+            switch (project.accent) {
+              case "red":
+                accent = "text-red-300";
+                break;
+              case "violet":
+                accent = "text-violet-300";
+                break;
+              case "purple":
+                accent = "text-purple-300";
+                break;
+              case "blue":
+                accent = "text-blue-300";
+                break;
+              case "green":
+                accent = "text-green-300";
+                break;
+              default:
+                break;
+            }
             return (
-              <div className={twMerge("flex flex-col gap-2 w-56")}>
+              <div
+                key={project.id}
+                className={twMerge("flex flex-col gap-2 w-56")}
+              >
                 <a
                   href={project.href || "#projects"}
                   target={project.href ? "_blank" : "_parent"}
                   className="w-full font-mono text-neutral-200 font-semibold px-0.5 flex gap-1.5 items-center justify-between group/title"
                 >
                   <span className="underline lg:text-lg xs:text-xs group-hover/title:text-neutral-400 ease-linear transition-colors">
-                    {project.name || lang!.untitled}
+                    {project.name || "Projeto sem título"}
                   </span>
                   {project.href && (
                     <span className="font-normal text-neutral-400 group-hover/title:text-neutral-500 ease-linear transition-colors lg:text-sm xs:text-xs">
@@ -277,7 +335,15 @@ function App() {
                     </span>
                   )}
                 </a>
-                <a href="#projects">
+                <a
+                  className="cursor-pointer hover:brightness-[.8] transition-all ease-linear"
+                  onClick={() => {
+                    setPopupVisible((prev) => ({
+                      isVisible: !prev.isVisible,
+                      index: project.id,
+                    }));
+                  }}
+                >
                   <Tilt
                     tiltMaxAngleX={2}
                     tiltMaxAngleY={4}
@@ -301,12 +367,73 @@ function App() {
                     </div>
                   </Tilt>
                 </a>
+                {popupVisible.isVisible &&
+                  popupVisible.index === project.id && (
+                    <div
+                      className={twMerge(
+                        popupVisible.isVisible ? "flex" : "hidden",
+                        "fixed w-screen h-screen left-0 top-0 z-20 px-36 py-12 backdrop-blur-[1px] bg-neutral-900-50"
+                      )}
+                    >
+                      <div
+                        className="bg-neutral-800 rounded-lg flex overflow-x-hidden overflow-y-scroll flex-col w-full"
+                        ref={popupRef}
+                      >
+                        <div
+                          className="flex justify-between items-center h-12 px-8 py-4 bg-neutral-800 fixed rounded-t-lg"
+                          style={{ width: `${popupWidth}px` }}
+                        >
+                          <h2
+                            className={twMerge(
+                              "font-mono",
+                              project.accent ? accent : "text-neutral-300"
+                            )}
+                          >
+                            {project.name}
+                          </h2>
+                          <button
+                            className="text-red-500 hover:text-red-700 transition-all ease-linear"
+                            onClick={() => {
+                              setPopupVisible((prev) => ({
+                                isVisible: !prev.isVisible,
+                                index: "",
+                              }));
+                            }}
+                          >
+                            <PiCircleFill />
+                          </button>
+                        </div>
+                        <div className="pt-12 flex flex-col gap-2">
+                          <div className="flex px-8 pb-2 gap-4 w-10/12">
+                            <img
+                              src={project.thumb}
+                              className="object-cover max-h-48 aspect-square rounded-md"
+                            />
+                            <div className="flex flex-col gap-4">
+                              <h1 className="font-poppins text-xl text-neutral-100">
+                                {project.brand_name
+                                  ? project.brand_name
+                                  : project.name}
+                              </h1>
+                              <p className="font-poppins text-neutral-300 ">
+                                {project.description}
+                              </p>
+                            </div>
+                          </div>
+                          {project.imgs &&
+                            project.imgs.map((img) => {
+                              return <img className="" src={img.img} />;
+                            })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
               </div>
             );
           })}
         </div>
       </div>
-      <div className="fixed -z-10 noise-dark size-full opacity-25" />
+      <div className="fixed -z-50 noise-dark size-full opacity-25" />
       <span className="xs:hidden lg:flex absolute leading-4 font-mono text-2xl rotate-6 opacity-10 top-[47%] left-[75%] text-center blur-[1.6px]">
         xxxxxxxxxx
         <br />
@@ -376,7 +503,7 @@ function App() {
           className="absolute w-20 left-12 -top-2 -rotate-[12deg] opacity-75 contrast-150 brightness-[1.22] group-hover/polaroid:-rotate-[10deg] ease-linear transition-transform"
         />
         <span className="absolute font-mono -rotate-[8deg] text-sm left-[3.5rem] top-[9.5rem] text-neutral-400 font-semibold italic opacity-40 group-hover/polaroid:-rotate-[6deg] ease-linear transition-transform">
-          {lang!.lifeisgood}
+          life is good
         </span>
       </div>
       <PiStarFill className="xs:hidden lg:flex absolute top-[24%] left-[5%] text-6xl rotate-[28deg] text-neutral-800 hover:rotate-[12deg] ease-linear transition-transform" />
